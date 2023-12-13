@@ -90,52 +90,45 @@ const quoteData = [
     }
 ];
 
-const Quotebox = ([quote, handleNewQuote]) => (
-  <div id="quote-box">
-    <h3 
-      id="text">
-      <i class='fa fa-quote-left'></i> 
-      Text here...
-    </h3>
-    <p 
-      id="author">
-      - Author here
-    </p>
-    <div id="actions">
-      <button 
-        id="new-quote" 
-        class="button"
-        onClick={handleNewQuote}>
-        New Quote
-      </button>
-      <a 
-        id="tweet-quote" 
-        href="twitter.com/intent/tweet" 
-        target="_blank">
-        <i class="fa fa-paper-plane"></i> 
-      </a>
+const QuoteBox = ({ quote, handleNewQuote }) => (
+    <div id="quote-box">
+      <p id="text"><i class="fa fa-quote-left"></i> {quote.text}</p>
+      <h5 id="author">{quote.author}</h5>
+      <div id="actions">
+        <a
+          href="https://twitter.com/intent/tweet"
+          id="tweet-quote" 
+          target="_blank">
+          <i class="fa fa-paper-plane"></i>
+        </a>
+        <button 
+          id="new-quote" 
+          class="button"
+          onClick={handleNewQuote}>
+          New Quote
+        </button>
+      </div>
+      <p>by bkm-code</p>
     </div>
-    <p>by bkm-code</p>
-  </div>
-);
-
-const getRandomIndex = () => Math.round(Math.random() * ((quoteData.length - 1) - 0) + 0);
-
-const App = () => {
-    const [quote, setQuote] = React.useState(quoteData[getRandomData()]);
-
-    const handleNewQuote = () => {
-        setQuote(quoteData[getRandomData()])
-    };
-
-    return (
-        <div id="main">
-            <Quotebox quote={quote} handleNewQuote={handleNewQuote} />
-        </div>
-    );
-};
-
-ReactDOM.render(<App />, document.querySelector("#app"))
+  );
+  
+  const getRandomIndex = () => Math.round(Math.random() * ((quoteData.length - 1) - 0) + 0);
+  
+  const App = () => {
+      const [quote, setQuote] = React.useState(quoteData[getRandomIndex()]);
+  
+      const handleNewQuote = () => {
+          setQuote(quoteData[getRandomIndex()])
+      };
+  
+      return (
+          <div id="main">
+              <QuoteBox quote={quote} handleNewQuote={handleNewQuote} />
+          </div>
+      );
+  };
+  
+  ReactDOM.render(<App />, document.querySelector("#app"));
 
 
 
