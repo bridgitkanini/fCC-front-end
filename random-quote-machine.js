@@ -1,6 +1,6 @@
 /* Random Quote Machine:
 HTML
-Quotes = #quote-box(meant array holding all quotes; quoteData), #text, #author
+Quotes = #quote-box(meant variable holding all quotes; quoteData), #text, #author
 Placement of quotes on page = #quote-box
 Link to tweet quote = #tweet-quote (<a href="twitter.com/intent/tweet" />)
 Icon styles: quote(") icon, twitter icon = #tweet-quote
@@ -88,9 +88,9 @@ const quoteData = [
         text: "Healing takes time, and asking for help is a courageous step." ,
         author: "— Mariska Hargitay"
     }
-]
+];
 
-const Quotebox = () => (
+const Quotebox = ([quote, handleNewQuote]) => (
   <div id="quote-box">
     <h3 
       id="text">
@@ -104,7 +104,8 @@ const Quotebox = () => (
     <div id="actions">
       <button 
         id="new-quote" 
-        class="button">
+        class="button"
+        onClick={handleNewQuote}>
         New Quote
       </button>
       <a 
@@ -118,11 +119,21 @@ const Quotebox = () => (
   </div>
 );
 
-const App = () => (
-  <div id="main">
-    <Quotebox />
-  </div>
-);
+const getRandomIndex = () => Math.round(Math.random() * ((quoteData.length - 1) - 0) + 0);
+
+const App = () => {
+    const [quote, setQuote] = React.useState(quoteData[getRandomData()]);
+
+    const handleNewQuote = () => {
+        setQuote(quoteData[getRandomData()])
+    };
+
+    return (
+        <div id="main">
+            <Quotebox quote={quote} handleNewQuote={handleNewQuote} />
+        </div>
+    );
+};
 
 ReactDOM.render(<App />, document.querySelector("#app"))
 
