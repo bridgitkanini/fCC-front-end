@@ -90,23 +90,43 @@ const quoteData = [
     }
 ];
 
+/*
+let colors = [
+    '#16a085',
+    '#27ae60',
+    '#2c3e50',
+    '#f39c12',
+    '#e74c3c',
+    '#9b59b6',
+    '#FB6964',
+    '#342224',
+    '#472E32',
+    '#BDBB99',
+    '#77B1A9',
+    '#73A857'
+  ]; 
+  */
+
 const QuoteBox = ({ quote, handleNewQuote }) => (
-    <div id="quote-box">
-      <p id="text"><i class="fa fa-quote-left"></i> {quote.text}</p>
-      <h5 id="author">{quote.author}</h5>
-      <div id="actions">
-        <a
-          href="https://twitter.com/intent/tweet"
-          id="tweet-quote" 
-          target="_blank">
-          <i class="fa fa-paper-plane"></i>
-        </a>
-        <button 
-          id="new-quote" 
-          class="button"
-          onClick={handleNewQuote}>
-          New Quote
-        </button>
+    <div id="wrapper">
+      <div id="quote-box">
+        <h4 class="text"><i class="fa fa-quote-left"></i> {quote.text}</h4>
+        <h5 class="author">{quote.author}</h5>
+        <div class="buttons">
+          <a
+            href="https://twitter.com/intent/tweet"
+            class="button"
+            id="tweet-quote" 
+            target="_blank">
+            <i class="fa fa-paper-plane"></i>
+          </a>
+          <button  
+            class="button"
+            id="new-quote"
+            onClick={handleNewQuote}>
+            New Quote
+          </button>
+        </div>
       </div>
       <p>by bkm-code</p>
     </div>
@@ -114,6 +134,9 @@ const QuoteBox = ({ quote, handleNewQuote }) => (
   
   const getRandomIndex = () => Math.round(Math.random() * ((quoteData.length - 1) - 0) + 0);
   
+  //const getRandomColor = () => Math.round(Math.random() * ((colors.length - 1) - 0) + 0);
+  //How to get colo change onClick of #new-quote?
+
   const App = () => {
       const [quote, setQuote] = React.useState(quoteData[getRandomIndex()]);
   
