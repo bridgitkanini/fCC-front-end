@@ -135,7 +135,7 @@ const QuoteBox = ({ quote, handleNewQuote }) => (
   const getRandomIndex = () => Math.round(Math.random() * ((quoteData.length - 1) - 0) + 0);
   
   //const getRandomColor = () => Math.round(Math.random() * ((colors.length - 1) - 0) + 0);
-  //How to get colo change onClick of #new-quote?
+  //How to get color change onClick of #new-quote?
 
   const App = () => {
       const [quote, setQuote] = React.useState(quoteData[getRandomIndex()]);
@@ -143,10 +143,18 @@ const QuoteBox = ({ quote, handleNewQuote }) => (
       const handleNewQuote = () => {
           setQuote(quoteData[getRandomIndex()])
       };
+
+      /*
+    const [color, setColor] = React.useState(colors[getRandomColor()]);
+
+    const handleNewColor = () => {
+        setQuote(colors[getRandomColor()])
+    };
+    */
   
       return (
           <div id="main">
-              <QuoteBox quote={quote} handleNewQuote={handleNewQuote} />
+              <QuoteBox quote={quote} handleNewQuote={handleNewQuote} /*handleNewColor={handleNewColor}*/ />
           </div>
       );
   };
