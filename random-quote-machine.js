@@ -1,28 +1,3 @@
-/* Random Quote Machine:
-HTML
-Quotes = #quote-box(meant variable holding all quotes; quoteData), #text, #author
-Placement of quotes on page = #quote-box
-Link to tweet quote = #tweet-quote (<a href="twitter.com/intent/tweet" />)
-Icon styles: quote(") icon, twitter icon = #tweet-quote
-New button create -> New button function; onClick, move to new quote. = #new-quote
-Color; Background + Quote -> Color change, each quote different color.
-
-1. React Component:
--Class; this-state
--Methods
--Render
-
-2. Redux:
--Action
--Action Creator
--Reducer
--Store
-
-3. React-Redux:
--Provider; wrapper component, rendered.
--Connect; mapStateToProps(), mapDispatchToProps()
-*/
-
 import React from "https://esm.sh/react";
 import ReactDOM from "https://esm.sh/react-dom";
 
@@ -194,7 +169,7 @@ INSTRUCTIONS:
 // Once you have read the above messages, you can delete all comments. 
 
 
-/* Random Quote Machine:
+/* Pseudocode; Random Quote Machine:
 HTML
 Quotes = #quote-box, #text, #author
 Placement of quotes on page = #quote-box

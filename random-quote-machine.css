@@ -50,12 +50,15 @@ body {
   opacity: 1;
   cursor: pointer;
 }
+
 #quote-box .buttons .button:hover {
   opacity: 0.9;
 }
+
 #quote-box .buttons .button#tweet-quote {
   float: left;
 }
+
 #quote-box .buttons .button#new-quote {
   float: right;
 }
