@@ -67,20 +67,23 @@ const quoteData = [
 
 /*
 let colors = [
-    '#16a085',
-    '#27ae60',
-    '#2c3e50',
-    '#f39c12',
-    '#e74c3c',
-    '#9b59b6',
-    '#FB6964',
-    '#342224',
-    '#472E32',
-    '#BDBB99',
-    '#77B1A9',
-    '#73A857'
-  ]; 
-  */
+  '#16a085',
+  '#27ae60',
+  '#2c3e50',
+  '#f39c12',
+  '#11222c',
+  '#9b59b6',
+  '#1c5858',
+  '#f69000',
+  '#53b1b1',
+  '#f6c624',
+  '#77B1A9',
+  '#73A857',
+  '#532058',
+  '#a8408b',
+  '#0b8ba4'
+];
+*/
 
 const QuoteBox = ({ quote, handleNewQuote }) => (
     <div id="wrapper">
@@ -192,4 +195,8 @@ Color; Background + Quote -> Color change, each quote different color.
 3. React-Redux:
 -Provider; wrapper component, rendered.
 -Connect; mapStateToProps(), mapDispatchToProps()
+
+CSS:
+-Transitions
+-Background color is #text color is buttons color but #quote-box consistently remains #fff 
 */
