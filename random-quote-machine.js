@@ -1,5 +1,6 @@
 import React from "https://esm.sh/react";
 import ReactDOM from "https://esm.sh/react-dom";
+import classnames from "https://esm.sh/classnames";
 
 const quoteData = [
     {
@@ -136,7 +137,10 @@ const QuoteBox = ({ quote, handleNewQuote }) => (
     */
   
       return (
-          <div className="main" style={{ backgroundColor: pageBackgroundColor }}>
+          <div className="main" style={{ 
+            backgroundColor: pageBackgroundColor,
+            transition: 'background-color 1s ease-in-out, opacity 1s ease-in-out',
+          }}>
               <QuoteBox quote={quote} handleNewQuote={handleNewQuote} /*handleNewColor={handleNewColor}? No. Updated.*/ />
           </div>
       );
