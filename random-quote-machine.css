@@ -17,7 +17,7 @@ body {
   width: 450px;
   padding: 40px 50px;
   display: table;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 #quote-box .text {
@@ -76,6 +76,6 @@ p {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #16a085;
 }
+
 

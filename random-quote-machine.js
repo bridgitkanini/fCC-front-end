@@ -65,43 +65,43 @@ const quoteData = [
     }
 ];
 
-/*
-let colors = [
-  '#16a085',
-  '#27ae60',
-  '#2c3e50',
-  '#f39c12',
-  '#11222c',
-  '#9b59b6',
-  '#1c5858',
-  '#f69000',
-  '#53b1b1',
-  '#f6c624',
-  '#77B1A9',
-  '#73A857',
-  '#532058',
-  '#a8408b',
-  '#0b8ba4'
+const colors = [
+  "#16a085",
+  "#27ae60",
+  "#2c3e50",
+  "#f39c12",
+  "#11222c",
+  "#9b59b6",
+  "#1c5858",
+  "#f69000",
+  "#53b1b1",
+  "#f6c624",
+  "#77B1A9",
+  "#73A857",
+  "#532058",
+  "#a8408b",
+  "#0b8ba4"
 ];
-*/
 
 const QuoteBox = ({ quote, handleNewQuote }) => (
     <div id="wrapper">
       <div id="quote-box">
-        <h4 class="text"><i class="fa fa-quote-left"></i> {quote.text}</h4>
-        <h5 class="author">{quote.author}</h5>
-        <div class="buttons">
+        <h4 className="text">
+          <i className="fa fa-quote-left"></i> {quote.text}
+        </h4>
+        <h5 className="author">
+          {quote.author}
+        </h5>
+        <div className="buttons">
           <a
             href="https://twitter.com/intent/tweet"
-            class="button"
+            className="button"
             id="tweet-quote" 
-            target="_blank">
-            <i class="fa fa-paper-plane"></i>
+            target="_blank"
+          >
+            <i className="fa fa-paper-plane"></i>
           </a>
-          <button  
-            class="button"
-            id="new-quote"
-            onClick={handleNewQuote}>
+          <button className="button" id="new-quote" onClick={handleNewQuote}>
             New Quote
           </button>
         </div>
@@ -110,16 +110,21 @@ const QuoteBox = ({ quote, handleNewQuote }) => (
     </div>
   );
   
-  const getRandomIndex = () => Math.round(Math.random() * ((quoteData.length - 1) - 0) + 0);
+  const getRandomQuote = () => Math.round(Math.random() * (quoteData.length - 1 - 0) + 0);
+
+  const getRandomColor = () => Math.round(Math.random() * (colors.length - 1 - 0) + 0);
   
   //const getRandomColor = () => Math.round(Math.random() * ((colors.length - 1) - 0) + 0);
   //How to get color change onClick of #new-quote?
+  //Update; I figured it out (I wasn't far off *happy-cry emoji)
 
   const App = () => {
-      const [quote, setQuote] = React.useState(quoteData[getRandomIndex()]);
-  
+      const [quote, setQuote] = React.useState(quoteData[getRandomQuote()]);
+      const [pageBackgroundColor, setPageBackgroundColor] = React.useState(colors[getRandomColor()]);
+
       const handleNewQuote = () => {
-          setQuote(quoteData[getRandomIndex()])
+          setQuote(quoteData[getRandomQuote()]);
+          setPageBackgroundColor(colors[getRandomColor()]);
       };
 
       /*
@@ -131,8 +136,8 @@ const QuoteBox = ({ quote, handleNewQuote }) => (
     */
   
       return (
-          <div id="main">
-              <QuoteBox quote={quote} handleNewQuote={handleNewQuote} /*handleNewColor={handleNewColor}*/ />
+          <div className="main" style={{ backgroundColor: pageBackgroundColor }}>
+              <QuoteBox quote={quote} handleNewQuote={handleNewQuote} /*handleNewColor={handleNewColor}? No. Updated.*/ />
           </div>
       );
   };
