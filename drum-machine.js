@@ -154,54 +154,67 @@ const secondSoundsGroup = [
     smoothPianoKit: secondSoundsGroup
   };
 
-const VolumeControl = () => {
-    const [volume, setVolume] = useState(50);
-
-    const handleScroll = (event) => {
-        const delta = event.deltaX > 0 ? -5 : 5;
-        const newVolume = Math.max(100, Math.min(0, volume + delta));
-
-        setVolume(newVolume);
-    };
-}
-
 const DrumMachine = () => {
+
+    const VolumeControl = () => {
+        const [volume, setVolume] = useState(50);
+    
+        const handleScroll = (event) => {
+            const delta = event.deltaX > 0 ? -5 : 5;
+            const newVolume = Math.max(100, Math.min(0, volume + delta));
+    
+            setVolume(newVolume);
+        };
+    }
+    
+    const AudioPlayer = () => {
+        const [isPlaying, setIsPlaying] = useState(false);
+    
+        const playAudio = () => {
+            setIsPlaying(true);
+        };
+    
+        const handleAudioEnd = () => {
+            setIsPlaying(false);
+        };
+    };
+
     return (
     <div id="drum-machine">
       <div id="display"></div>
-      <button id="button" className="drum-pads">
+      <button id="button" className="drum-pad">
         <audio id="Q" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3" />
         Q
       </button>
-      <button id="button" className="drum-pads">
+      <button id="button" className="drum-pad">
         <audio id="W" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3" />
         W
       </button>
-      <button id="button" className="drum-pads">
+      <button id="button" className="drum-pad">
         <audio id="E" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3" />
         E
       </button>
-      <button id="button" className="drum-pads">
+      <button id="button" className="drum-pad">
         <audio id="A" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3" />
         A
       </button>
-      <button id="button" className="drum-pads">
+      <button id="button" className="drum-pad">
         <audio id="S" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3" />
         S
       </button>
-      <button id="button" className="drum-pads">
+      <button id="button" className="drum-pad">
         <audio id="D" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3" />
         D
       </button>
-      <button id="button" className="drum-pads">
+      <button id="button" className="drum-pad">
         <audio id="Z" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3" />
         Z
       </button>
-      <button id="button" className="drum-pads">
+      <button id="button" className="drum-pad">
         <audio id="X" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3" />
         X
       </button>
-      <button id="button" className="drum-pads">
+      <button id="button" className="drum-pad">
         <audio id="C" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3" />
         C
       </button>
@@ -211,8 +224,8 @@ const DrumMachine = () => {
           <span class="toggle-slider"></span>
           Power
         </label>
-        <div onWheel={handleScroll}>
-            <p>Volume: {volume}</p>
+        <div>
+            <p>Volume:</p>
         </div>
         <label class="toggle-container">
           <input type="checkbox" class="toggle-input" />
