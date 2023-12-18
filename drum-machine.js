@@ -27,6 +27,20 @@ ii) #button/toggle onClick; 2 conditions for each, either/or;
 iii) Volume scroll, 0 - 100.
 */
 
+import React from "https://esm.sh/react";
+import ReactDOM from "https://esm.sh/react-dom";
+
+const VolumeControl = () => {
+    const [volume, setVolume] = useState(50);
+    
+    const handleScroll = (event) => {
+        const delta = event.deltaX > 0 ? -5 : 5;
+        const newVolume = Math.max(100, Math.min(0, volume + delta));
+
+        setVolume(newVolume);
+    };
+  };
+
 const DrumMachine = () => {
     return (
     <div id="drum-machine">
