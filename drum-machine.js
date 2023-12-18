@@ -20,18 +20,74 @@ Elements:
 Functions: 
 i) .drum-pads onClick; 
 - Corresponding audio.
-- Corresponding #display name{object?}.
+- Corresponding #display name{object/array?}.
 ii) #button/toggle onClick; 2 conditions for each, either/or; 
 - Power = on/off 
 - Change sound name = heather kit/ smooth piano kit
 iii) Volume scroll, 0 - 100.
 */
 
-import React from "https://esm.sh/react";
-import ReactDOM from "https://esm.sh/react-dom";
-
-const App = () => {
-  return (<h1>Drum Machine Here We Go!</h1>);
-};
-
-ReactDOM.render(<App />, document.getElementById("app"));
+const DrumMachine = () => {
+    return (
+    <div id="drum-machine">
+      <div id="display"></div>
+      <button id="button" className="drum-pads">
+        <audio id="Q" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3" />
+        Q
+      </button>
+      <button id="button" className="drum-pads">
+        <audio id="W" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3" />
+        W
+      </button>
+      <button id="button" className="drum-pads">
+        <audio id="E" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3" />
+        E
+      </button>
+      <button id="button" className="drum-pads">
+        <audio id="A" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3" />
+        A
+      </button>
+      <button id="button" className="drum-pads">
+        <audio id="S" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3" />
+        S
+      </button>
+      <button id="button" className="drum-pads">
+        <audio id="D" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3" />
+        D
+      </button>
+      <button id="button" className="drum-pads">
+        <audio id="Z" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3" />
+        Z
+      </button>
+      <button id="button" className="drum-pads">
+        <audio id="X" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3" />
+        X
+      </button>
+      <button id="button" className="drum-pads">
+        <audio id="C" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3" />
+        C
+      </button>
+      <label class="toggle-container">
+        <input type="checkbox" class="toggle-input" />
+        <span class="toggle-slider"></span>
+        Power
+      </label>
+      <label class="toggle-container">
+        <input type="checkbox" class="toggle-input" />
+        <span class="toggle-slider"></span>
+        Bank
+      </label>
+    </div>
+    );
+  };
+  
+  const App = () => {
+    return (
+      <div>
+        <h1>Drum Machine Here We Go!</h1>
+        <DrumMachine />
+      </div>
+    );
+  };
+  
+  ReactDOM.render(<App />, document.getElementById("app"));
