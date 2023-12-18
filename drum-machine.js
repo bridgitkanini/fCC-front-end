@@ -67,16 +67,19 @@ const DrumMachine = () => {
         <audio id="C" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3" />
         C
       </button>
-      <label class="toggle-container">
-        <input type="checkbox" class="toggle-input" />
-        <span class="toggle-slider"></span>
-        Power
-      </label>
-      <label class="toggle-container">
-        <input type="checkbox" class="toggle-input" />
-        <span class="toggle-slider"></span>
-        Bank
-      </label>
+      <div>
+        <label class="toggle-container">
+          <input type="checkbox" class="toggle-input" />
+          <span class="toggle-slider"></span>
+          Power
+        </label>
+        <p>Volume:</p>
+        <label class="toggle-container">
+          <input type="checkbox" class="toggle-input" />
+          <span class="toggle-slider"></span>
+          Bank
+        </label>
+      </div>
     </div>
     );
   };
