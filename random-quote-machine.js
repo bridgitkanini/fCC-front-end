@@ -85,7 +85,9 @@ const colors = [
 ];
 
 const QuoteBox = ({ quote, handleNewQuote }) => (
-    <div id="wrapper">
+    <div id="wrapper" style={{
+      transition: 'background-color 1s ease-in-out, opacity 1s ease-in-out',
+    }}>
       <div id="quote-box">
         <h4 className="text">
           <i className="fa fa-quote-left"></i> {quote.text}
