@@ -87,7 +87,9 @@ const DrumMachine = () => {
           <span class="toggle-slider"></span>
           Power
         </label>
-        <p>Volume:</p>
+        <div onWheel={handleScroll}>
+            <p>Volume: {volume}</p>
+        </div>
         <label class="toggle-container">
           <input type="checkbox" class="toggle-input" />
           <span class="toggle-slider"></span>
