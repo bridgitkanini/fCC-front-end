@@ -13,6 +13,18 @@ Pseudocode:
 #6: Pressing the Q key should trigger the drum pad which contains the string Q, pressing the W key should trigger the drum pad which contains the string W, etc.
 
 #7: When a .drum-pad is triggered, a string describing the associated audio clip is displayed as the inner text of the #display element.
+
+Elements: 
+#drum-machine -> #display(sound name) -> .drum-pads(letters) -> .clip(audio src) -> power button/toggle -> volume scroll -> change sound name button/toggle
+
+Functions: 
+i) .drum-pads onClick; 
+- Corresponding audio.
+- Corresponding #display name{object?}.
+ii) #button/toggle onClick; 2 conditions for each, either/or; 
+- Power = on/off 
+- Change sound name = heather kit/ smooth piano kit
+iii) Volume scroll, 0 - 100.
 */
 
 import React from "https://esm.sh/react";
