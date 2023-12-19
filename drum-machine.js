@@ -144,24 +144,96 @@ const secondSoundsGroup = [
     }
   ];
 
-  const soundsName = {
-    heaterKit: "Heater Kit",
-    smoothPianoKit: "Smooth Piano Kit"
-  };
+const soundsName = {
+  heaterKit: "Heater Kit",
+  smoothPianoKit: "Smooth Piano Kit"
+};
   
-  const soundsGroup = {
-    heaterKit: firstSoundsGroup,
-    smoothPianoKit: secondSoundsGroup
+const soundsGroup = {
+  heaterKit: firstSoundsGroup,
+  smoothPianoKit: secondSoundsGroup
+};
+
+const DrumKey = ({ play, deactivateAudio, sound: { id, key, url, keycode } }) => {
+  const handleKeydown = (e) => {
+    if (keyCode === e.keycode) {
+      const audio = document.getElementById(key);
+      play(key, id);
+      deactivateAudio(audio);
+    }
   };
 
+  React.useEffect(() => {
+    document.addEventListener('keydown', handleKeydown);
+    return () => document.removeEventListener('keydown', handleKeydown);
+  }, []);
+
+  return (
+    <button value="test" id={keyCode} className="drum-pad" onClick={() => play(key, id)}>
+      <audio className="clip" src={url} id={key} />
+      {key}
+    </button>
+  );
+};
+
+const DrumMachine = ({ sounds, play, power, deactivateAudio }) => (
+  <div className="keyboard">
+    {power
+      ? sounds.map((sound) => <KeyboardKey sound={sound} play={play} deactivateAudio={deactivateAudio} />)
+      : sounds.map((sound) => <KeyboardKey sound={{ ...sound, url: "#" }} play={play} deactivateAudio={deactivateAudio} />)
+    }
+  </div>
+);
+
+const DrumControl = ({ stop, name, power, volume, handleVolumeChange, changeSoundGroup }) => (
+  <div className="control">
+    <button onClick={stop}>Turn Power {power ? 'OFF' : 'ON'}</button>
+    <h2>Volume: %{Math.round(volume * 100)}</h2>
+    <input
+      max="1"
+      min="0"
+      step='0.01'
+      type="range"
+      value={volume}
+      onChange={handleVolumeChange}
+    />
+    <h2 id="display">{name}</h2>
+    <button onClick={changeSoundGroup}>Change Sounds Group</button>
+  </div>
+);
+
+const App = () => {
+  const [power, setPower] = React.useState(true);
+  const [volume, setVolume] = React.useState(1);
+  const [soundName, setSoundName] = React.useState("");
+  const [soundType, setSoundType] = React.useState("heaterKit");
+  const [sounds, setSounds] = React.useState(soundsGroup[soundType]);
+
+  return (
+    <div id="drum-machine">
+      {setKeyVolume()}
+      <div className="wrapper">
+        <DrumMachine sounds={sounds} play={play} power={power} deactivateAudio={deactivateAudio} />
+        <DrumControl
+          stop={stop}
+          power={power}
+          volume={volume}
+          name={soundName || soundsName[soundType]}
+          changeSoundGroup={changeSoundGroup}
+          handleVolumeChange={handleVolumeChange}
+        />
+      </div>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("app"));
+
+  /*
 const DrumMachine = () => {
   const AudioPlayer = ({ playAudio }) => {
 
     const [isPlaying, setIsPlaying] = useState(false);
-    
-   /* const playAudio = () => {
-      setIsPlaying(true);
-    }; */
 
     const handleAudioEnd = () => {
       setIsPlaying(false);
@@ -178,12 +250,9 @@ const DrumMachine = () => {
     };
   };
 
+
   const PowerToggle = ({ toggleMute }) => {
     const [isMuted, setIsMuted] = useState(false);
-
-    /*const toggleMute = () => {
-      setIsMuted((prevIsMuted) => !prevIsMuted);
-    };*/
 
     return (
       <div>
@@ -198,13 +267,6 @@ const DrumMachine = () => {
 
   const VolumeControl = ({ handleScroll }) => {
     const [volume, setVolume] = useState(50);
-
-    /*const handleScroll = (event) => {
-        const delta = event.deltaX > 0 ? -5 : 5;
-        const newVolume = Math.max(100, Math.min(0, volume + delta));
-
-        setVolume(newVolume);
-    };*/
 
     return (
       <div id="volume" className="scrollable-container" onWheel={handleScroll}>
@@ -225,7 +287,7 @@ const DrumButton = ({ playAudio }) => {
 };
 
 
-  /*
+
     return (
     <div id="drum-machine">
       <div id="display"></div>
@@ -337,9 +399,9 @@ const DrumButton = ({ playAudio }) => {
     </div>
   </div>
   );
-  */
+ 
   
-  const App = () => {
+  const Appp = () => {
 
     const playAudio = () => {
       setIsPlaying(true);
@@ -362,10 +424,11 @@ const DrumButton = ({ playAudio }) => {
       <div>
         <h1>Drum Machine Here We Go!</h1>
         <DrumMachine />
-
-
+        <AudioPlayer playAudio={playAudio} />
+        <PowerToggle toggleMute={toggleMute} />
+        <VolumeControl handleScroll={handleScroll} />
+        <DrumButton playAudio={playAudio} />
       </div>
     );
   };
-  
-  ReactDOM.render(<App />, document.getElementById("app"));
+   */
