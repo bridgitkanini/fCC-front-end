@@ -155,29 +155,46 @@ const secondSoundsGroup = [
   };
 
 const DrumMachine = () => {
-
-    const VolumeControl = () => {
-        const [volume, setVolume] = useState(50);
     
-        const handleScroll = (event) => {
-            const delta = event.deltaX > 0 ? -5 : 5;
-            const newVolume = Math.max(100, Math.min(0, volume + delta));
-    
-            setVolume(newVolume);
-        };
-    }
-    
-    const AudioPlayer = () => {
+    const AudioPlayer = ({ playAudio }) => {
         const [isPlaying, setIsPlaying] = useState(false);
-    
+
         const playAudio = () => {
-            setIsPlaying(true);
+          setIsPlaying(true);
         };
-    
+        
         const handleAudioEnd = () => {
             setIsPlaying(false);
         };
+
+        return (
+        <div>
+          <button id="button" className="drum-pad" onClick={playAudio}>
+            <audio id="Q" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3" />
+            Q
+          </button>
+        </div>
+        );
     };
+
+    const PowerToggle = () => {
+      const [isMuted, setIsMuted] = useState(false);
+
+      const toggleMute = () => {
+        setIsMuted((prevIsMuted) => !prevIsMuted);
+      };
+    };
+
+    const VolumeControl = () => {
+      const [volume, setVolume] = useState(50);
+  
+      const handleScroll = (event) => {
+          const delta = event.deltaX > 0 ? -5 : 5;
+          const newVolume = Math.max(100, Math.min(0, volume + delta));
+  
+          setVolume(newVolume);
+      };
+  };
 
     return (
     <div id="drum-machine">
@@ -219,18 +236,18 @@ const DrumMachine = () => {
         C
       </button>
       <div>
-        <label class="toggle-container">
+        <label id="power" class="toggle-container">
           <input type="checkbox" class="toggle-input" />
           <span class="toggle-slider"></span>
           Power
         </label>
-        <div>
+        <div id="volume">
             <p>Volume:</p>
         </div>
-        <label class="toggle-container">
+        <label id="sound-group" class="toggle-container">
           <input type="checkbox" class="toggle-input" />
           <span class="toggle-slider"></span>
-          Bank
+          Sound Group
         </label>
       </div>
     </div>
