@@ -155,47 +155,77 @@ const secondSoundsGroup = [
   };
 
 const DrumMachine = () => {
+  const AudioPlayer = ({ playAudio }) => {
+
+    const [isPlaying, setIsPlaying] = useState(false);
     
-    const AudioPlayer = ({ playAudio }) => {
-        const [isPlaying, setIsPlaying] = useState(false);
+   /* const playAudio = () => {
+      setIsPlaying(true);
+    }; */
 
-        const playAudio = () => {
-          setIsPlaying(true);
-        };
-        
-        const handleAudioEnd = () => {
-            setIsPlaying(false);
-        };
-
-        return (
-        <div>
-          <button id="button" className="drum-pad" onClick={playAudio}>
-            <audio id="Q" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3" />
-            Q
-          </button>
-        </div>
-        );
+    const handleAudioEnd = () => {
+      setIsPlaying(false);
     };
-
-    const PowerToggle = () => {
-      const [isMuted, setIsMuted] = useState(false);
-
-      const toggleMute = () => {
-        setIsMuted((prevIsMuted) => !prevIsMuted);
-      };
+    
+    return (
+      <div>
+        <button id="button" className="drum-pad" onClick={playAudio}>
+          <audio id="Q" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3" />
+          Q
+        </button>
+      </div>
+      );
     };
-
-    const VolumeControl = () => {
-      const [volume, setVolume] = useState(50);
-  
-      const handleScroll = (event) => {
-          const delta = event.deltaX > 0 ? -5 : 5;
-          const newVolume = Math.max(100, Math.min(0, volume + delta));
-  
-          setVolume(newVolume);
-      };
   };
 
+  const PowerToggle = ({ toggleMute }) => {
+    const [isMuted, setIsMuted] = useState(false);
+
+    /*const toggleMute = () => {
+      setIsMuted((prevIsMuted) => !prevIsMuted);
+    };*/
+
+    return (
+      <div>
+        <label id="power" class="toggle-container">
+          <input type="checkbox" class="toggle-input" onClick={toggleMute} />
+          <span class="toggle-slider"></span>
+          Power
+        </label>
+      </div>
+    );
+  };
+
+  const VolumeControl = ({ handleScroll }) => {
+    const [volume, setVolume] = useState(50);
+
+    /*const handleScroll = (event) => {
+        const delta = event.deltaX > 0 ? -5 : 5;
+        const newVolume = Math.max(100, Math.min(0, volume + delta));
+
+        setVolume(newVolume);
+    };*/
+
+    return (
+      <div id="volume" className="scrollable-container" onWheel={handleScroll}>
+        <p>Volume:</p>
+      </div>
+    );
+};
+
+const DrumButton = ({ playAudio }) => {
+  return (
+    <div>
+      <button id="button" className="drum-pad" onClick={playAudio}>
+        <audio id="Q" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3" />
+        Q
+      </button>
+    </div>
+  );
+};
+
+
+  /*
     return (
     <div id="drum-machine">
       <div id="display"></div>
@@ -241,7 +271,7 @@ const DrumMachine = () => {
           <span class="toggle-slider"></span>
           Power
         </label>
-        <div id="volume">
+        <div id="volume" className="scrollable-container">
             <p>Volume:</p>
         </div>
         <label id="sound-group" class="toggle-container">
@@ -251,14 +281,89 @@ const DrumMachine = () => {
         </label>
       </div>
     </div>
-    );
-  };
+    );return (
+  <div id="drum-machine">
+    <div id="display"></div>
+    <button id="button" className="drum-pad">
+      <audio id="Q" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3" />
+      Q
+    </button>
+    <button id="button" className="drum-pad">
+      <audio id="W" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3" />
+      W
+    </button>
+    <button id="button" className="drum-pad">
+      <audio id="E" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3" />
+      E
+    </button>
+    <button id="button" className="drum-pad">
+      <audio id="A" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3" />
+      A
+    </button>
+    <button id="button" className="drum-pad">
+      <audio id="S" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3" />
+      S
+    </button>
+    <button id="button" className="drum-pad">
+      <audio id="D" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3" />
+      D
+    </button>
+    <button id="button" className="drum-pad">
+      <audio id="Z" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3" />
+      Z
+    </button>
+    <button id="button" className="drum-pad">
+      <audio id="X" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3" />
+      X
+    </button>
+    <button id="button" className="drum-pad">
+      <audio id="C" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3" />
+      C
+    </button>
+    <div>
+      <label id="power" class="toggle-container">
+        <input type="checkbox" class="toggle-input" />
+        <span class="toggle-slider"></span>
+        Power
+      </label>
+      <div id="volume">
+          <p>Volume:</p>
+      </div>
+      <label id="sound-group" class="toggle-container">
+        <input type="checkbox" class="toggle-input" />
+        <span class="toggle-slider"></span>
+        Sound Group
+      </label>
+    </div>
+  </div>
+  );
+  */
   
   const App = () => {
+
+    const playAudio = () => {
+      setIsPlaying(true);
+    };
+
+    const toggleMute = () => {
+      setIsMuted((prevIsMuted) => !prevIsMuted);
+    };
+
+    const handleScroll = (event) => {
+
+      const delta = event.deltaX > 0 ? -2 : 2;
+
+      const newVolume = Math.max(100, Math.min(0, volume + delta));
+
+      setVolume(newVolume);
+    };
+
     return (
       <div>
         <h1>Drum Machine Here We Go!</h1>
         <DrumMachine />
+
+
       </div>
     );
   };
