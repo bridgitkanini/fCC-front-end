@@ -17,7 +17,7 @@ body {
   width: 450px;
   padding: 40px 50px;
   display: table;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 #quote-box .text {
@@ -48,6 +48,7 @@ body {
   margin-top: 40px;
   padding: 8px 20px 8px 20px;
   opacity: 1;
+  transition: opacity 1s ease-in-out;
   cursor: pointer;
 }
 
