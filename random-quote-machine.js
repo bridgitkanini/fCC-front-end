@@ -89,10 +89,10 @@ const QuoteBox = ({ quote, handleNewQuote }) => (
       transition: 'background-color 1s ease-in-out, opacity 1s ease-in-out',
     }}>
       <div id="quote-box">
-        <h4 className="text">
+        <h4 id="text" className="text">
           <i className="fa fa-quote-left"></i> {quote.text}
         </h4>
-        <h5 className="author">
+        <h5 id="author" className="author">
           {quote.author}
         </h5>
         <div className="buttons">
