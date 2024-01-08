@@ -61,20 +61,20 @@
     }
   }
   
-  .controle {
+  .control {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
   }
   
-  .controle > button,
-  .controle > input,
-  .controle > h2{
+  .control > button,
+  .control > input,
+  .control > h2{
     margin-bottom: 10px
   }
   
-  .controle button{
+  .control button{
     border: none;
     color: #ffffff;
     cursor: pointer;
@@ -82,4 +82,45 @@
     padding: 8px 10px;
     border-radius: 5px;
     background-color: #000000;
+  }
+
+  .toggle-container {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .toggle-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 30px;
+    transition: 0.4s;
+  }
+
+  .toggle-input {
+    display: none; /* Hide the actual checkbox. */
+  }
+
+  .toggle-input:checked + toggle-slider {
+    background-color: #2196F3; /* Change background color when checked. */
+  }
+
+  .toggle-slider:before {
+    content: " ";
+    position: absolute;
+    height: 26px;
+    width: 26px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+  }
+
+  .toggle-input:checked + .toggle-slider:before {
+    transform: translateX(20px);
   }
