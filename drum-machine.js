@@ -187,14 +187,15 @@ const DrumMachine = ({ sounds, play, power, deactivateAudio }) => (
 
 const DrumControl = ({ stop, name, power, volume, handleVolumeChange, changeSoundGroup }) => (
   <div className="control">
-    /* <button onClick={stop}>Turn Power {power ? 'OFF' : 'ON'}</button> */
-    <div>
-      <label class="toggle-container" >
-        <input type="checkbox" class="toggle-input"></input>
-        <span onClick={stop} class="toggle-slider">{power ? 'OFF' : 'ON'}</span>
+    <div className="toggles">
+      Power
+      <label className="toggle-container">
+        ????
+        <input type="checkbox" className="toggle-input"></input>
+        <span onClick={stop} className="toggle-slider">{power ? '' : ''}</span>
       </label>
     </div>
-    <h2>Volume: %{Math.round(volume * 100)}</h2>
+    <div className="button">Volume: {Math.round(volume * 100)}</div>
     <input
       max="1"
       min="0"
@@ -205,6 +206,14 @@ const DrumControl = ({ stop, name, power, volume, handleVolumeChange, changeSoun
     />
     <h2 id="display">{name}</h2>
     <button onClick={changeSoundGroup}>Change Sounds Group</button>
+    <div className="toggles">
+      Sounds name
+      <label className="toggle-container">
+        ????
+        <input type="checkbox" className="toggle-input" />
+        <span className="toggle-slider" onClick={changeSoundGroup} />
+      </label>
+    </div>
   </div>
 );
 
