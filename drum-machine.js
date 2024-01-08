@@ -187,7 +187,13 @@ const DrumMachine = ({ sounds, play, power, deactivateAudio }) => (
 
 const DrumControl = ({ stop, name, power, volume, handleVolumeChange, changeSoundGroup }) => (
   <div className="control">
-    <button onClick={stop}>Turn Power {power ? 'OFF' : 'ON'}</button>
+    /* <button onClick={stop}>Turn Power {power ? 'OFF' : 'ON'}</button> */
+    <div>
+      <label class="toggle-container" >
+        <input type="checkbox" class="toggle-input"></input>
+        <span onClick={stop} class="toggle-slider">{power ? 'OFF' : 'ON'}</span>
+      </label>
+    </div>
     <h2>Volume: %{Math.round(volume * 100)}</h2>
     <input
       max="1"
