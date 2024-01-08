@@ -27,8 +27,11 @@ const operators = ["AC", "/", "x", "+", "-", "="];
 
 const App = () => {
     return (
-        <div>JavaScript Calculator</div>
+        <div>
+            <h1>JavaScript Calculator</h1>
+            <p>by bkm-code</p>
+        </div>
     );
 };
 
-ReactDOM.render(<App />, document.querySelector("#app"))
+ReactDOM.render(<App />, document.getElementById("app"))
