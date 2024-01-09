@@ -2,19 +2,33 @@ import React from "https://esm.sh/react";
 import ReactDOM from "https://esm.sh/react-dom";
 
 const App = () => {
-    const handleBreakIncrease = {};
+    const [breakLength, setBreakLength] = React.useState(5);
+    const [sessionLength, setSessionLength] = React.useState(25);
+    const [play, setPlay] = React.useState(false);
 
-    const breakLength = {};
+    const handleBreakIncrease = () => {
+        if (breakLength > 60) {
+            setBreakLength(breakLength + 1)
+        }
+    };
 
-    const handleBreakDecrease = {};
+    const handleBreakDecrease = () => {
+        if (breakLength > 1) {
+            setBreakLength(breakLength - 1)
+        }
+    };
 
-    const handleSessionIncrease = {};
-        
-    const sessionLength = {};
+    const handleSessionIncrease = () => {
+        if (sessionLength < 60) {
+            setSessionLength(sessionLength + 1)
+        }
+    };
 
-    const handleSessionDecrease = {};
-
-    const play = {};
+    const handleSessionDecrease = () => {
+        if (sessionLength > 1) {
+            setSessionLength(sessionLength - 1)
+        }
+    };
 
     const handlePlay = {};
 
