@@ -5,6 +5,8 @@ const App = () => {
     const [breakLength, setBreakLength] = React.useState(5);
     const [sessionLength, setSessionLength] = React.useState(25);
     const [play, setPlay] = React.useState(false);
+    const [timingType, setTimingtype] = React.useState("SESSION");
+    const [timeLeft, seTimeLeft] = React.useState(1500);
 
     const handleBreakIncrease = () => {
         if (breakLength > 60) {
@@ -29,6 +31,22 @@ const App = () => {
             setSessionLength(sessionLength - 1)
         }
     };
+
+    const title = timingType === "SESSION" ? "Session" : "Break";
+
+    const timeFormatter = () => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft - minutes * 60;
+        const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+        const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+        return `${formattedMinutes}:${formattedSeconds}`;
+    };
+
+    const timeout = setTimeout(() => {
+        if (timeLeft && play) {
+          seTimeLeft(timeLeft - 1)
+        }
+      }, 1000);
 
     const handlePlay = {};
 
