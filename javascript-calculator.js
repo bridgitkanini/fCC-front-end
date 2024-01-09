@@ -49,8 +49,19 @@ const Keyboard = ({ handleInput }) => (
 const App = () => {
     const [input, setInput] = React.useState("");
     const [output, setOutput] = React.useState("");
+    const [calculatorData, setClaculatorData] = React.useState("");
 
-    const handleInput = () => {};
+    const handleInput = (value) => {
+        console.log({value})
+    };
+
+    const handleOutput = () => {
+        setOutput(calculatorData);
+    };
+
+    React.useeffect(() => {
+        handleOutput()
+    }, [calculatorData]);
 
     return (
         <div className="container">
