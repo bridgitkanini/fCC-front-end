@@ -52,7 +52,28 @@ const App = () => {
     const [calculatorData, setClaculatorData] = React.useState("");
 
     const handleInput = (value) => {
-        console.log({value})
+        const number = numbers.find((num) => num === value);
+        const operator = operators.find((op) => op === value);
+
+        switch (value) {
+            case "=":
+                handleSubmit();
+                break;
+            case "AC":
+                handleClear();
+                break;
+            case number:
+                handleNumbers(value);
+                break;
+            case ".":
+                dotOperator(value);
+                break;
+            case operator:
+                handleOperators(value);
+                break;
+            default:
+                break;
+        }
     };
 
     const handleOutput = () => {
