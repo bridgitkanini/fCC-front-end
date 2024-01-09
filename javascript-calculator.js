@@ -50,11 +50,16 @@ const App = () => {
     const [input, setInput] = React.useState("");
     const [output, setOutput] = React.useState("");
 
+    const handleInput = () => {};
+
     return (
-        <div>
-            <h1>JavaScript Calculator</h1>
-            <Display input={input} output={output} />
-            <p>by bkm-code</p>
+        <div className="container">
+            <div className="calculator">
+              <h1>JavaScript Calculator</h1>
+              <Display input={input} output={output} />
+              <Keyboard handleInput={handleInput} />
+              <p>by bkm-code</p>
+          </div>
         </div>
     );
 };
