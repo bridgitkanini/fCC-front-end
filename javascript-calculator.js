@@ -73,7 +73,7 @@ const App = () => {
                 setCalculatorData(`${calculatorData}${value}`);
 
                 const formattedValue = lastChar === "." || input.includes(".") ? `${calculatorData}` : `${calculatorData}.`; 
-                
+
                 setCalculatorData(formattedValue);
             }
         };
@@ -94,7 +94,31 @@ const App = () => {
             }
         };
 
-        const handleOperators = () => {};
+        const handleOperators = (value) => {
+            if (calculatorData.length) {
+                setInput(`${value}`);
+
+                const beforeLastChar = calculatorData.charAt(calculatorData.length - 2);
+          
+                const beforeLastCharIsOperator = operators.includes(beforeLastChar) || beforeLastChar === "*";
+          
+                const lastChar = calculatorData.charAt(calculatorData.length - 1);
+                
+                const lastCharIsOperator = operators.includes(lastChar) || lastChar === "*";
+                
+                const validOp = value === "x" ? "*" : value;
+
+                if ((lastCharIsOperator && value !== "-") || beforeLastCharIsOperator && lastCharIsOperator) {
+                    if (beforeLastCharIsOperator) {
+                        const updatedValue = `${calculatorData.substring(0, calculatorData.length - 2)}${value}`;
+
+                        setCalculatorData(updatedValue);
+                      } else {
+                        setCalculatorData(`${calculatorData.substring(0, calculatorData.length - 1)}${validOp}`);
+                        setCalculatorData(`${calculatorData}${validOp}`);
+                      } 
+                }
+        };
 
         switch (value) {
             case "=":
@@ -135,6 +159,7 @@ const App = () => {
           </div>
         </div>
     );
+  };
 };
 
-ReactDOM.render(<App />, document.getElementById("app"))
+ReactDOM.render(<App />, document.getElementById("app"));
