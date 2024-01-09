@@ -25,8 +25,11 @@ const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const operators = ["AC", "/", "x", "+", "-", "="];
 
-const Display = () => (
-    <div></div>
+const Display = ({ input, output }) => (
+    <div className="output">
+        <span className="result">{output}</span>
+        <span id="display" className="input">{input}</span>
+    </div>
 );
 
 const Key = () => (
@@ -38,9 +41,12 @@ const Keyboard = () => (
 );
 
 const App = () => {
+    const [input, setInput] = React.useState("");
+    const [output, setOutput] = React.useState("");
     return (
         <div>
             <h1>JavaScript Calculator</h1>
+            <Display input={input} output={output} />
             <p>by bkm-code</p>
         </div>
     );
