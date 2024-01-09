@@ -49,7 +49,7 @@ const Keyboard = ({ handleInput }) => (
 const App = () => {
     const [input, setInput] = React.useState("");
     const [output, setOutput] = React.useState("");
-    const [calculatorData, setClaculatorData] = React.useState("");
+    const [calculatorData, setCalculatorData] = React.useState("");
 
     const handleInput = (value) => {
         const number = numbers.find((num) => num === value);
@@ -59,11 +59,42 @@ const App = () => {
 
         const handleClear = () => {};
 
-        const handleNumbers = () => {};
+        const handleNumbers = (value) => {
+            if (!calculatorData.length) {
+                setInput(`${value}`);
+                setCalculatorData(`${value}`);
+            } else if (value === 0 && (calculatorData === "0" || input === "0")) {
+                setCalculatorData(`${calculatorData}`);
+            } else {
+                const lastChar = calculatorData.charAt(calculatorData.length - 1);
+                const isLastCharOperator = lastChar === "*" || operators.includes(lastChar);
 
-        const dotOperator = () => {};
+                setInput(isLastCharOperator ? `${value}` : `&{input}${value}`);
+                setCalculatorData(`${calculatorData}${value}`);
 
-        const handleOperator = () => {};
+                const formattedValue = lastChar === "." || input.includes(".") ? `${calculatorData}` : `${calculatorData}.`; 
+                
+                setCalculatorData(formattedValue);
+            }
+        };
+
+        const dotOperator = () => {
+            const lastChar = calculatorData.charAt(calculatorData.length - 1);
+
+            if (!calculatorData.length) {
+                setInput("0.");
+                setCalculatorData("0.");
+            } else if (lastChar === "*" || operators.includes(lastChar)) {
+                setInput("0.");
+                setCalculatorData(`${calculatorData} 0.`);
+            } else {
+                setInput(
+                    lastChar === "." || input.includes(".") ? `${input}` : `${input}.`
+                ); 
+            }
+        };
+
+        const handleOperators = () => {};
 
         switch (value) {
             case "=":
