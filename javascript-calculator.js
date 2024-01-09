@@ -55,9 +55,19 @@ const App = () => {
         const number = numbers.find((num) => num === value);
         const operator = operators.find((op) => op === value);
 
-        const handleSubmit = () => {};
+        const handleSubmit = () => {
+            console.log({ calculatorData });
+        
+            const total = eval(calculatorData);
+            setInput(total);
+            setOutput(`${total} = ${total}`);
+            setCalculatorData(`${total}`);
+        };
 
-        const handleClear = () => {};
+        const handleClear = () => {
+            setInput("0");
+            setCalculatorData("");
+        };
 
         const handleNumbers = (value) => {
             if (!calculatorData.length) {
