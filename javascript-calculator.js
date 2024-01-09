@@ -32,17 +32,24 @@ const Display = ({ input, output }) => (
     </div>
 );
 
-const Key = () => (
-    <button></button>
+const Key = ({ keyData: { id, value }, handleInput }) => (
+    <button id={id} onClick={() => handleInput(value)}>
+        {value}
+    </button>
 );
 
-const Keyboard = () => (
-    <div></div>
+const Keyboard = ({ handleInput }) => (
+    <div className="keys">
+        {calcData.map((key) => (
+            <Key key={key.id} keyData={key} handleInput={handleInput} />
+        ))}
+    </div>
 );
 
 const App = () => {
     const [input, setInput] = React.useState("");
     const [output, setOutput] = React.useState("");
+
     return (
         <div>
             <h1>JavaScript Calculator</h1>
