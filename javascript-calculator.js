@@ -55,6 +55,16 @@ const App = () => {
         const number = numbers.find((num) => num === value);
         const operator = operators.find((op) => op === value);
 
+        const handleSubmit = () => {};
+
+        const handleClear = () => {};
+
+        const handleNumbers = () => {};
+
+        const dotOperator = () => {};
+
+        const handleOperator = () => {};
+
         switch (value) {
             case "=":
                 handleSubmit();
