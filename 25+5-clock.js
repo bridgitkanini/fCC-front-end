@@ -23,12 +23,14 @@ const App = () => {
     const handleSessionIncrease = () => {
         if (sessionLength < 60) {
             setSessionLength(sessionLength + 1)
+            seTimeLeft(timeLeft + 60)
         }
     };
 
     const handleSessionDecrease = () => {
         if (sessionLength > 1) {
             setSessionLength(sessionLength - 1)
+            seTimeLeft(timeLeft - 60)
         }
     };
 
@@ -48,9 +50,52 @@ const App = () => {
         }
       }, 1000);
 
-    const handlePlay = {};
+    const handlePlay = () => {
+        clearTimeout(timeout);
+        setPlay(!play);
+    };
 
-    const handleReset = {};
+    const clock = () => {
+        if (play) {
+          timeout
+          resetTimer()
+        } else {
+          clearTimeout(timeout)
+        }
+    };
+
+    React.useEffect(() => { clock() }, [play, timeLeft, timeout]);
+
+    const resetTimer = () => {
+        const audio = document.getElementById("beep");
+
+        if (!timeLeft && timingType === "SESSION") {
+          seTimeLeft(breakLength * 60)
+          setTimingtype("BREAK")
+          audio.play()
+        }
+        
+        if (!timeLeft && timingType === "BREAK") {
+          seTimeLeft(sessionLength * 60)
+          setTimingtype("SESSION")
+          audio.pause()
+          audio.currentTime = 0;
+        }
+    };
+
+    const handleReset = () => {
+        clearTimeout(timeout);
+        setPlay(false);
+        seTimeLeft(1500);
+        setBreakLength(5);
+        setSessionLength(25);
+        setTimingtype("SESSION");
+        
+        const audio = document.getElementById("beep");
+
+        audio.pause();
+        audio.currentTime = 0;
+    };
 
     return (
         <div>
